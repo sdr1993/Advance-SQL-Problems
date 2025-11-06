@@ -45,3 +45,11 @@ facebook_posts:
 | 5        | 3       | User 3 posts SPAM content a lot              | [#spam#]                         | 2019-01-02 |
 +----------+---------+-----------------------------------------------+----------------------------------+------------+
 
+SOLUTION:
+
+SELECT 
+  * FROM 
+facebook_posts fp JOIN 
+facebook_reactions fr ON
+    fp.post_id = fr.post_id 
+WHERE fr.reaction = 'heart';
