@@ -1,0 +1,16 @@
+WITH page_table AS(
+  SELECT  
+    user_id, 
+    page_id,
+    CONCAT(user_id,page_id) AS id
+  FROM users_pages
+)
+
+SELECT DISTINCT 
+    uf.user_id, 
+    up.page_id 
+FROM users_friends uf JOIN users_pages up 
+ON up.user_id=uf.friend_id
+WHERE 
+  CONCAT( uf.user_id, up.page_id) NOT IN 
+(SELECT id FROM page_table);
